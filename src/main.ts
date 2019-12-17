@@ -1,16 +1,37 @@
 import * as core from '@actions/core'
-import {wait} from './wait'
+import { Client } from './client'
 
-async function run(): Promise<void> {
+async function run() {
   try {
-    const ms: string = core.getInput('milliseconds')
-    core.debug(`Waiting ${ms} milliseconds ...`)
+    let status: string = core.getInput('status', { required: true })
+    status = status.toLowerCase()
+    const success_text = core.getInput('success_text')
+    const failure_text = core.getInput('failure_text')
+    const cancelled_text = core.getInput('cancelled_text')
 
-    core.debug(new Date().toTimeString())
-    await wait(parseInt(ms, 10))
-    core.debug(new Date().toTimeString())
+    core.debug(`status: ${status}`)
+    core.debug(`success_text: ${success_text}`)
+    core.debug(`failure_text: ${failure_text}`)
+    core.debug(`cancelled_text: ${cancelled_text}`)
 
-    core.setOutput('time', new Date().toTimeString())
+    const client = new Client()
+    var message = ''
+    switch (status) {
+      case 'success':
+        message = success_text
+        break
+      case 'failure':
+        message = failure_text
+        break
+      case 'cancelled':
+        message = cancelled_text
+        break
+      default:
+        throw new Error(
+          'You can specify success or failure or cancelled',
+        )
+    }
+    await client.sendMessage(status, message)
   } catch (error) {
     core.setFailed(error.message)
   }
