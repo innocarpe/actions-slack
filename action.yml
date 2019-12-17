@@ -1,10 +1,19 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: action-slack
+description: Notify via slack in GitHub Actions workflow
+author: innocarpe
 inputs:
-  myInput:              # change this
-    description: 'input description here'
-    default: 'default value if applicable'
+  success_text:
+    description: Slack message when succeeded.
+    default: "Succeeded 🚀"
+  failure_text:
+    description: Slack message when failed.
+    default: "Failed 😱"
+  cancelled_text:
+    description: Slack message when cancelled.
+    default: "Cancelled ⚠️"
 runs:
   using: 'node12'
-  main: 'dist/index.js'
+  main: lib/main.js
+branding:
+  icon: bell
+  color: black
