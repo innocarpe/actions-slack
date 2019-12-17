@@ -1,0 +1,72 @@
+name: Slack Mainline
+on:
+  push:
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Start CD (AppStore) workflow
+        uses: innocarpe/actions-slack@v1
+        with:
+          status: success
+          success_text: '<!subteam^S6RFV3BFW> @${{ github.actor }} 님이 `${{ github.ref }}` 의 앱스토어 배포 Action 을 시작했습니다 🚀'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: TestFlight Distribution Finished
+        uses: innocarpe/actions-slack@v1
+        with:
+          status: success
+          success_text: '<!subteam^S6RFV3BFW> TestFlight 배포 완료 💯'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: TestFlight Distribution Failed
+        uses: innocarpe/actions-slack@v1
+        with:
+          status: failure
+          failure_text: <!subteam^S6RFV3BFW> TestFlight 배포 실패 😱
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: TestFlight Distribution Cancelled
+        uses: innocarpe/actions-slack@v1
+        with:
+          status: cancelled
+          cancelled_text: <!subteam^S6RFV3BFW> @${{ github.actor }} 님이 앱스토어 제출을 취소했습니다 ⚠️
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: AppStore Submit Finished
+        uses: innocarpe/actions-slack@v1
+        with:
+          status: success
+          success_text: '<!subteam^S6RFV3BFW> 앱스토어 제출 완료 ✅'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: AppStore Submit Failed
+        uses: innocarpe/actions-slack@v1
+        with:
+          status: failure
+          failure_text: '<!subteam^S6RFV3BFW> 앱스토어 제출 실패 😱'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: AppStore Submit Cancelled
+        uses: innocarpe/actions-slack@v1
+        with:
+          status: cancelled
+          cancelled_text: <!subteam^S6RFV3BFW> @${{ github.actor }} 님이 앱스토어 제출을 취소했습니다 ⚠️
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
