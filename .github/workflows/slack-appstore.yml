@@ -12,7 +12,7 @@ jobs:
         uses: innocarpe/actions-slack@v1
         with:
           status: success
-          success_text: '<!subteam^S6RFV3BFW> @${{ github.actor }} 님이 `${{ github.ref }}` 의 앱스토어 배포 Action 을 시작했습니다 🚀'
+          success_text: "<!subteam^S6RFV3BFW> @${{ github.actor }} just started a 'Submit to Appstore' workflow for `${{ github.ref }}` 🚀"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
@@ -21,25 +21,7 @@ jobs:
         uses: innocarpe/actions-slack@v1
         with:
           status: success
-          success_text: '<!subteam^S6RFV3BFW> TestFlight 배포 완료 💯'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-
-      - name: TestFlight Distribution Failed
-        uses: innocarpe/actions-slack@v1
-        with:
-          status: failure
-          failure_text: <!subteam^S6RFV3BFW> TestFlight 배포 실패 😱
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-
-      - name: TestFlight Distribution Cancelled
-        uses: innocarpe/actions-slack@v1
-        with:
-          status: cancelled
-          cancelled_text: <!subteam^S6RFV3BFW> @${{ github.actor }} 님이 앱스토어 제출을 취소했습니다 ⚠️
+          success_text: "<!subteam^S6RFV3BFW> TestFlight distribution finished 💯"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
@@ -48,7 +30,17 @@ jobs:
         uses: innocarpe/actions-slack@v1
         with:
           status: success
-          success_text: '<!subteam^S6RFV3BFW> 앱스토어 제출 완료 ✅'
+          success_text: "<!subteam^S6RFV3BFW> 'Submit to Appstore' workflow is finished ✅"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+
+      - name: TestFlight Distribution Failed
+        uses: innocarpe/actions-slack@v1
+        with:
+          status: failure
+          failure_text: "<!subteam^S6RFV3BFW> TestFlight distribution failed 😱"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
@@ -57,16 +49,26 @@ jobs:
         uses: innocarpe/actions-slack@v1
         with:
           status: failure
-          failure_text: '<!subteam^S6RFV3BFW> 앱스토어 제출 실패 😱'
+          failure_text: "<!subteam^S6RFV3BFW> Couldn't submit to Appstore 😱"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
 
       - name: AppStore Submit Cancelled
         uses: innocarpe/actions-slack@v1
         with:
           status: cancelled
-          cancelled_text: <!subteam^S6RFV3BFW> @${{ github.actor }} 님이 앱스토어 제출을 취소했습니다 ⚠️
+          cancelled_text: "<!subteam^S6RFV3BFW> @${{ github.actor }} cancelled the 'Submit to Appstore' ⚠️"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: TestFlight Distribution Cancelled
+        uses: innocarpe/actions-slack@v1
+        with:
+          status: cancelled
+          cancelled_text: "<!subteam^S6RFV3BFW> @${{ github.actor }} cancelled the 'Submit to Appstore' workflow ⚠️"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
