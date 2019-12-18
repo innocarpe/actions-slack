@@ -1,4 +1,4 @@
-name: Slack Mainline
+name: Slack Appstore
 on:
   push:
     tags:
