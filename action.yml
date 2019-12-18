@@ -1,4 +1,4 @@
-name: action-slack
+name: actions-slack
 description: Notify via slack in GitHub Actions workflow
 author: innocarpe
 inputs:
