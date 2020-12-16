@@ -2,6 +2,9 @@ name: actions-slack
 description: Notify via slack in GitHub Actions workflow
 author: innocarpe
 inputs:
+  status:
+    description: "The status of the job, usually : ${{ job.status }}"
+    required: true
   success_text:
     description: Slack message when succeeded.
     default: "Succeeded 🚀"
