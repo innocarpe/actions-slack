@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Start CD (AppStore) workflow
-        uses: innocarpe/actions-slack@v1
+        uses: innocarpe/actions-slack@v1.1
         with:
           status: success
           success_text: "<!subteam^S6RFV3BFW> @${{ github.actor }} just started a 'Submit to Appstore' workflow for `${{ github.ref }}` 🚀"
@@ -18,7 +18,7 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
       - name: TestFlight Distribution Finished
-        uses: innocarpe/actions-slack@v1
+        uses: innocarpe/actions-slack@v1.1
         with:
           status: success
           success_text: "<!subteam^S6RFV3BFW> TestFlight distribution finished 💯"
@@ -27,7 +27,7 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
       - name: AppStore Submit Finished
-        uses: innocarpe/actions-slack@v1
+        uses: innocarpe/actions-slack@v1.1
         with:
           status: success
           success_text: "<!subteam^S6RFV3BFW> 'Submit to Appstore' workflow is finished ✅"
@@ -37,7 +37,7 @@ jobs:
 
 
       - name: TestFlight Distribution Failed
-        uses: innocarpe/actions-slack@v1
+        uses: innocarpe/actions-slack@v1.1
         with:
           status: failure
           failure_text: "<!subteam^S6RFV3BFW> TestFlight distribution failed 😱"
@@ -46,7 +46,7 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
       - name: AppStore Submit Failed
-        uses: innocarpe/actions-slack@v1
+        uses: innocarpe/actions-slack@v1.1
         with:
           status: failure
           failure_text: "<!subteam^S6RFV3BFW> Couldn't submit to Appstore 😱"
@@ -56,7 +56,7 @@ jobs:
 
 
       - name: AppStore Submit Cancelled
-        uses: innocarpe/actions-slack@v1
+        uses: innocarpe/actions-slack@v1.1
         with:
           status: cancelled
           cancelled_text: "<!subteam^S6RFV3BFW> @${{ github.actor }} cancelled the 'Submit to Appstore' ⚠️"
@@ -65,7 +65,7 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
       - name: TestFlight Distribution Cancelled
-        uses: innocarpe/actions-slack@v1
+        uses: innocarpe/actions-slack@v1.1
         with:
           status: cancelled
           cancelled_text: "<!subteam^S6RFV3BFW> @${{ github.actor }} cancelled the 'Submit to Appstore' workflow ⚠️"

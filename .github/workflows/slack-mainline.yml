@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Normal Case Check
-        uses: innocarpe/actions-slack@v1
+        uses: innocarpe/actions-slack@v1.1
         with:
           status: ${{ job.status }} # Required
           success_text: 'Step Succeeded 🚀' # Optional
@@ -21,7 +21,7 @@ jobs:
 
       # Message with group mention, github actor, github ref
       - name: Advanced Case Check 
-        uses: innocarpe/actions-slack@v1
+        uses: innocarpe/actions-slack@v1.1
         with:
           status: ${{ job.status }} # Required
           success_text: '<!subteam^S1ABC2DEF> @${{ github.actor }} just started the workflow for `${{ github.ref }}` 🚀'
@@ -32,7 +32,7 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # Required
 
       - name: Succeeded Check
-        uses: innocarpe/actions-slack@v1
+        uses: innocarpe/actions-slack@v1.1
         with:
           status: success
           success_text: 'Step Succeeded 🚀'
@@ -41,7 +41,7 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
       - name: Failed Check
-        uses: innocarpe/actions-slack@v1
+        uses: innocarpe/actions-slack@v1.1
         with:
           status: failure
           failure_text: 'Step Failed 😱'
@@ -50,7 +50,7 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
       - name: Cancelled Check
-        uses: innocarpe/actions-slack@v1
+        uses: innocarpe/actions-slack@v1.1
         with:
           status: cancelled
           cancelled_text: 'Step Cancelled ⚠️'
@@ -59,7 +59,7 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
       - name: Default Check
-        uses: innocarpe/actions-slack@v1
+        uses: innocarpe/actions-slack@v1.1
         with:
           status: ${{ job.status }}
         env:
