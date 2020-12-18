@@ -11,7 +11,7 @@ jobs:
       - name: Normal Case Check
         uses: innocarpe/actions-slack@v1.1
         with:
-          status: ${{ job.status }} # Required
+          status: ${{ notify.status }} # Required
           success_text: 'Step Succeeded 🚀' # Optional
           failure_text: 'Step Failed 😱' # Optional
           cancelled_text: 'Step Cancelled ⚠️' # Optional
@@ -23,7 +23,7 @@ jobs:
       - name: Advanced Case Check 
         uses: innocarpe/actions-slack@v1.1
         with:
-          status: ${{ job.status }} # Required
+          status: ${{ notify.status }} # Required
           success_text: '<!subteam^S1ABC2DEF> @${{ github.actor }} just started the workflow for `${{ github.ref }}` 🚀'
           failure_text: 'Step Failed 😱' # Optional
           cancelled_text: 'Step Cancelled ⚠️' # Optional
@@ -61,7 +61,7 @@ jobs:
       - name: Default Check
         uses: innocarpe/actions-slack@v1.1
         with:
-          status: ${{ job.status }}
+          status: ${{ notify.status }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

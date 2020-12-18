@@ -24,7 +24,7 @@ steps:
   - name: Notify
     uses: innocarpe/actions-slack@v1
     with:
-      status: ${{ job.status }} # Required
+      status: ${{ jobs.<job_id>.status }} # Required
       success_text: 'Step Succeeded 🚀' # Optional
       failure_text: 'Step Failed 😱' # Optional
       cancelled_text: 'Step Cancelled ⚠️' # Optional
@@ -42,7 +42,7 @@ steps:
   - name: Notify the start
     uses: innocarpe/actions-slack@v1
     with:
-      status: ${{ job.status }} # Required
+      status: ${{ jobs.<job_id>.status }} # Required
       success_text: '<!subteam^S1ABC2DEF> @${{ github.actor }} just started the workflow for `${{ github.ref }}`'
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Required
@@ -57,7 +57,7 @@ steps:
   - name: Notify to Slack
     uses: innocarpe/actions-slack@v1
     with:
-      status: ${{ job.status }} # Required
+      status: ${{ jobs.<job_id>.status }} # Required
       success_text: '<!subteam^S1ABC2DEF> The awesome workflow just finished ✅'
       failure_text: '<!subteam^S1ABC2DEF> The bad workflow failed. Please check the issue below 👇'
     env:

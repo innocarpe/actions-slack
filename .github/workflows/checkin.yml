@@ -23,9 +23,9 @@ jobs:
           || (echo "##[error] found changed files after build. please 'npm run build && npm run format'" \
                    "and check in all changes" \
               && exit 1)
-      - uses: innocarpe/actions-slack@v1
+      - uses: innocarpe/actions-slack@v1.1
         with:
-          status: ${{ job.status }}
+          status: ${{ status }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
