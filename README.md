@@ -22,7 +22,7 @@ steps:
     run: ...
 
   - name: Notify
-    uses: innocarpe/actions-slack@v1
+    uses: innocarpe/actions-slack@v1.1
     with:
       status: ${{ jobs.<job_id>.status }} # Required
       success_text: 'Step Succeeded 🚀' # Optional
@@ -40,7 +40,7 @@ You can use `slack group mention(@your-group)` and `github actor/ref` and so on.
 ```yaml
 steps:
   - name: Notify the start
-    uses: innocarpe/actions-slack@v1
+    uses: innocarpe/actions-slack@v1.1
     with:
       status: ${{ jobs.<job_id>.status }} # Required
       success_text: '<!subteam^S1ABC2DEF> @${{ github.actor }} just started the workflow for `${{ github.ref }}`'
@@ -55,7 +55,7 @@ steps:
     run: ...
     
   - name: Notify to Slack
-    uses: innocarpe/actions-slack@v1
+    uses: innocarpe/actions-slack@v1.1
     with:
       status: ${{ jobs.<job_id>.status }} # Required
       success_text: '<!subteam^S1ABC2DEF> The awesome workflow just finished ✅'
