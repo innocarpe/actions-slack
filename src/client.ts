@@ -1,16 +1,18 @@
 import * as core from '@actions/core'
 import * as github from '@actions/github'
+import type { GitHub } from "@actions/github/lib/utils";
+
 import { IncomingWebhook, IncomingWebhookSendArguments } from '@slack/webhook'
 
 export class Client {
   private webhook: IncomingWebhook
-  private github?: github.GitHub
+  private github: InstanceType<typeof GitHub>
 
   constructor() {
     if (process.env.GITHUB_TOKEN === undefined) {
       throw new Error('Specify secrets.GITHUB_TOKEN')
     }
-    this.github = new github.GitHub(process.env.GITHUB_TOKEN)
+    this.github = github.getOctokit(process.env.GITHUB_TOKEN)
     if (process.env.SLACK_WEBHOOK_URL === undefined) {
       throw new Error('Specify secrets.SLACK_WEBHOOK_URL')
     }

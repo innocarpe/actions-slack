@@ -33,7 +33,11 @@ async function run() {
     }
     await client.sendMessage(status, message)
   } catch (error) {
-    core.setFailed(error.message)
+    let errorMessage = "Failed to do something exceptional";
+    if (error instanceof Error) {
+      errorMessage = error.message;
+    }
+    core.setFailed(errorMessage)
   }
 }
 
